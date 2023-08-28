@@ -1,0 +1,7 @@
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+spring.datasource.initialization-mode=always
+spring.sql.init.mode=always
+spring.mvc.hiddenmethod.filter.enabled=true
+server.port=8090

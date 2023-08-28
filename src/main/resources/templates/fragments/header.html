@@ -1,0 +1,26 @@
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Бусыгин Дмитрий</span>
+            <a class="navbar-brand" target="_blank" rel="noopener noreferrer"
+               href="https://kazan.hh.ru/resume/3662a872ff02c71f1f0039ed1f5565454b6a4c">
+                <img th:src="@{images/hh-logo.png}" alt="hh" width="24" height="24">
+            </a>
+            <a class="navbar-brand" target="_blank" rel="noopener noreferrer"
+               href="tg://resolve?domain=diman_qa">
+                <img th:src="@{images/telegram-logo.png}" alt="hh" width="24" height="24">
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/tasks}">Список задач</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/tasks/new}">Новая задача</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
