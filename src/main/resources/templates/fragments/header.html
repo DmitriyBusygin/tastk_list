@@ -1,4 +1,5 @@
-<header th:fragment="header">
+<header th:fragment="header"
+        th:with="pageName=${pageName} ?: 'otherPage'">
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">Бусыгин Дмитрий</span>
@@ -14,10 +15,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" th:href="@{/tasks}">Список задач</a>
+                        <a class="nav-link" th:classappend="${#strings.equals(pageName, 'index') ? 'active' : ''}"
+                           th:href="@{/tasks}">Список задач</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/tasks/new}">Новая задача</a>
+                        <a class="nav-link" th:classappend="${#strings.equals(pageName, 'new') ? 'active' : ''}"
+                           th:href="@{/tasks/new}">Новая задача</a>
                     </li>
                 </ul>
             </div>

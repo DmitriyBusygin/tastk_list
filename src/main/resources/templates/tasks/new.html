@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<div th:replace="~{fragments/header :: header}"></div>
+<div th:replace="~{fragments/header :: header(pageName='new')}"></div>
 
 <h2 class="text-center">Новая задача</h2>
 <form th:action="@{/tasks/new}" method="post" enctype="multipart/form-data" th:object="${task}"
@@ -46,8 +46,7 @@
         <label class="form-check-label" for="completed">Выполнено</label>
         <input type="checkbox" th:field="*{completed}" class="form-check-input" id="completed">
     </div>
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
 </form>
 
 </body>

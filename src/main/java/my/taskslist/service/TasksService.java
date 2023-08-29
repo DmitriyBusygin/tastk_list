@@ -20,6 +20,10 @@ public class TasksService {
         return tasksRepository.findAll();
     }
 
+    public Task findById(int id) {
+        return tasksRepository.findById(id).orElse(null);
+    }
+
     public void save(Task task) {
         tasksRepository.save(task);
     }

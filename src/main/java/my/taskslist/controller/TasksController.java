@@ -4,10 +4,7 @@ import my.taskslist.model.Task;
 import my.taskslist.service.TasksService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/tasks")
@@ -22,12 +19,19 @@ public class TasksController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("tasks", tasksService.findAll());
-        return "tasks/tasks";
+        return "tasks/index";
+    }
+
+    @GetMapping("/{id}")
+    public String show(Model model,
+                       @PathVariable("id") int id) {
+        model.addAttribute("task", tasksService.findById(id));
+        return "tasks/show";
     }
 
     @GetMapping("/new")
     public String newTask(@ModelAttribute("task") Task task) {
-        return "tasks/task_new";
+        return "tasks/new";
     }
 
     @PostMapping("/new")
