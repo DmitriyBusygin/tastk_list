@@ -1,6 +1,7 @@
 package my.taskslist.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -26,12 +27,17 @@ public class Task {
     private boolean completed;
 
     @Column(name = "create_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
     @Column(name = "finish_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date finishDate;
+
+    public Task() {
+    }
 
     public Integer getId() {
         return id;
