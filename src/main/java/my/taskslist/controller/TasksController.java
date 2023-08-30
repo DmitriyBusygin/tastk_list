@@ -36,8 +36,21 @@ public class TasksController {
 
     @PostMapping("/new")
     public String save(@ModelAttribute("task") Task task) {
-        System.out.println(task.getTitle());
         tasksService.save(task);
+        return "redirect:/tasks";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(Model model,
+                       @PathVariable("id") int id) {
+        model.addAttribute("task", tasksService.findById(id));
+        return "tasks/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String edit(@PathVariable("id") int id,
+                       @ModelAttribute("task") Task task) {
+        tasksService.edit(id, task);
         return "redirect:/tasks";
     }
 }
