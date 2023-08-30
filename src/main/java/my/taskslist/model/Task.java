@@ -1,16 +1,20 @@
 package my.taskslist.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "Task")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Task {
 
     @Id

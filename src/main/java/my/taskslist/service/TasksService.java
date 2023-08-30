@@ -3,6 +3,7 @@ package my.taskslist.service;
 
 import my.taskslist.model.Task;
 import my.taskslist.repository.TasksRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public class TasksService {
         this.tasksRepository = tasksRepository;
     }
 
-    public List<Task> findAll() {
-        return tasksRepository.findAll();
+    public List<Task> findAll(final String sortField) {
+        return tasksRepository.findAll(Sort.by(sortField));
     }
 
     public Task findById(int id) {

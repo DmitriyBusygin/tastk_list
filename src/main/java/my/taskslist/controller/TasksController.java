@@ -17,8 +17,9 @@ public class TasksController {
     }
 
     @GetMapping
-    public String getAll(Model model) {
-        model.addAttribute("tasks", tasksService.findAll());
+    public String getAll(Model model,
+                         @RequestParam(name = "sortField", defaultValue = "id") final String sortField) {
+        model.addAttribute("tasks", tasksService.findAll(sortField));
         return "tasks/index";
     }
 
