@@ -32,4 +32,8 @@ public class TasksService {
         task.setId(id);
         tasksRepository.save(task);
     }
+
+    public void delete(int id) {
+        tasksRepository.deleteById(id);
+    }
 }
