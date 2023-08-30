@@ -36,4 +36,10 @@ public class TasksService {
     public void delete(int id) {
         tasksRepository.deleteById(id);
     }
+
+    public void makeCompleted(int id, boolean makeStatus) {
+        Task updateTask = findById(id);
+        updateTask.setCompleted(makeStatus);
+        tasksRepository.save(updateTask);
+    }
 }

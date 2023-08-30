@@ -33,7 +33,16 @@
                 <td th:text="${task.getTitle()}"></td>
                 <td th:text="${task.getDescription()}"></td>
                 <td th:text="${task.getPriority()}"></td>
-                <td th:text="${task.isCompleted()}"></td>
+                <td>
+                    <form th:if="${task.isCompleted() == true}"
+                          th:action="@{/tasks/completed/{id}(id=${task.getId()}, makeStatus=false)}" method="post">
+                        <button class="bi bi-check-square" type="submit" value="Отменить выполнение"></button>
+                    </form>
+                    <form th:if="${task.isCompleted() == false}"
+                          th:action="@{/tasks/completed/{id}(id=${task.getId()}, makeStatus=true)}" method="post">
+                        <button class="bi bi-square" type="submit" value="Пометить выполненной"></button>
+                    </form>
+                </td>
                 <td class="d-flex gap-2">
                     <form th:action="@{/tasks/{id}(id=${task.getId()})}">
                         <button class="bi bi-eye" type="submit" value="Посмотреть"></button>

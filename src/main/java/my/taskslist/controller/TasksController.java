@@ -59,4 +59,11 @@ public class TasksController {
         tasksService.delete(id);
         return "redirect:/tasks";
     }
+
+    @PostMapping("/completed/{id}")
+    public String makeCompleted(@PathVariable("id") int id,
+                                @RequestParam(name = "makeStatus") boolean makeStatus) {
+        tasksService.makeCompleted(id, makeStatus);
+        return "redirect:/tasks";
+    }
 }
