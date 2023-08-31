@@ -20,11 +20,17 @@ public class TasksService {
     public Page<Task> findAll(final int pageNumber,
                               final int pageSize,
                               final String sortField,
-                              final String sortDirection) {
+                              final String sortDirection,
+                              final String query) {
         final Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
                 Sort.by(sortField).ascending() : Sort.by(sortField).descending();
         final Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
-        return tasksRepository.findAll(pageable);
+
+        if (query == null) {
+            return tasksRepository.findAll(pageable);
+        } else {
+            return tasksRepository.findTasksByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(query, query, pageable);
+        }
     }
 
     public Task findById(int id) {

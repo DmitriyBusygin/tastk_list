@@ -15,6 +15,12 @@
 <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
     <h2 class="text-center">Список задач</h2>
 
+    <form th:action="@{/tasks}" role="search" class="d-flex gap-1">
+        <input type="text" placeholder="Поиск" class="form-control w-25" th:name="query"/>
+        <button class="btn btn-primary" type="submit">Поиск</button>
+    </form>
+    <p></p>
+
     <div th:if="${tasks.size() > 0}">
         <table class="table table-hover table-responsive-xl">
             <thead class="table-secondary">
@@ -64,7 +70,7 @@
     </div>
 
     <!--Пагинация-->
-    <nav>
+    <nav th:if="${tasks.size() > 0}">
         <ul class="pagination pagination-sm">
             <li class="page-item" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
                 <a class="page-link"

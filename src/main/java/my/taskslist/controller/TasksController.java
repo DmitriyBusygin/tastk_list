@@ -24,9 +24,10 @@ public class TasksController {
                          @RequestParam(name = "page-number", defaultValue = "1") final int pageNo,
                          @RequestParam(name = "page-size", defaultValue = "10") final int pageSize,
                          @RequestParam(name = "sort-field", defaultValue = "id") final String sortField,
-                         @RequestParam(name = "sort-dir", defaultValue = "asc") final String sortDir) {
+                         @RequestParam(name = "sort-dir", defaultValue = "asc") final String sortDir,
+                         @RequestParam(name = "query", required = false) final String query) {
 
-        final Page<Task> page = tasksService.findAll(pageNo, pageSize, sortField, sortDir);
+        final Page<Task> page = tasksService.findAll(pageNo, pageSize, sortField, sortDir, query);
         final List<Task> taskList = page.getContent();
 
         // pagination parameters
