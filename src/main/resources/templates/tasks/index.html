@@ -62,6 +62,29 @@
     <div th:unless="${tasks.size()> 0}">
         <span>Список задач пуст!</span>
     </div>
+
+    <!--Пагинация-->
+    <nav>
+        <ul class="pagination pagination-sm">
+            <li class="page-item" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
+                <a class="page-link"
+                   th:href="@{tasks(page-number=${currentPage - 1}, sort-field=${sortField}, sort-dir=${sortDir})}">&laquo;</a>
+            </li>
+
+            <li class="page-item" aria-current="page"
+                th:each="i: ${#numbers.sequence(1, totalPages)}"
+                th:classappend="${currentPage == i ? 'active' : ''}">
+                <a class="page-link"
+                   th:href="@{tasks(page-number=${i}, sort-field=${sortField}, sort-dir=${sortDir})}"
+                >[[${i}]]</a>
+            </li>
+
+            <li class="page-item" th:classappend="${currentPage == totalPages ? 'disabled' : ''}">
+                <a class="page-link"
+                   th:href="@{tasks(page-number=${currentPage + 1}, sort-field=${sortField}, sort-dir=${sortDir})}">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 </body>

@@ -1,12 +1,12 @@
 package my.taskslist.service;
 
-
 import my.taskslist.model.Task;
 import my.taskslist.repository.TasksRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class TasksService {
@@ -17,8 +17,14 @@ public class TasksService {
         this.tasksRepository = tasksRepository;
     }
 
-    public List<Task> findAll(final String sortField) {
-        return tasksRepository.findAll(Sort.by(sortField));
+    public Page<Task> findAll(final int pageNumber,
+                              final int pageSize,
+                              final String sortField,
+                              final String sortDirection) {
+        final Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+                Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+        final Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
+        return tasksRepository.findAll(pageable);
     }
 
     public Task findById(int id) {

@@ -2,9 +2,12 @@ package my.taskslist.controller;
 
 import my.taskslist.model.Task;
 import my.taskslist.service.TasksService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/tasks")
@@ -18,8 +21,23 @@ public class TasksController {
 
     @GetMapping
     public String getAll(Model model,
-                         @RequestParam(name = "sortField", defaultValue = "id") final String sortField) {
-        model.addAttribute("tasks", tasksService.findAll(sortField));
+                         @RequestParam(name = "page-number", defaultValue = "1") final int pageNo,
+                         @RequestParam(name = "page-size", defaultValue = "10") final int pageSize,
+                         @RequestParam(name = "sort-field", defaultValue = "id") final String sortField,
+                         @RequestParam(name = "sort-dir", defaultValue = "asc") final String sortDir) {
+
+        final Page<Task> page = tasksService.findAll(pageNo, pageSize, sortField, sortDir);
+        final List<Task> taskList = page.getContent();
+
+        // pagination parameters
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        // sorting parameters
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        // tasks
+        model.addAttribute("tasks", taskList);
         return "tasks/index";
     }
 
