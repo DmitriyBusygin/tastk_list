@@ -37,6 +37,7 @@ public class TasksController {
         // sorting parameters
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc")?"desc":"asc");
         // tasks
         model.addAttribute("tasks", taskList);
         return "tasks/index";
