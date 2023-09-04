@@ -25,11 +25,11 @@
         <table class="table table-hover table-responsive-xl">
             <thead class="table-secondary">
             <tr>
-                <th scope="col"><a th:href="@{/tasks(sort-field='id', sort-dir=${reverseSortDir})}">#</a></th>
-                <th scope="col"><a th:href="@{/tasks(sort-field='title', sort-dir=${reverseSortDir})}">Заголовок</a></th>
-                <th scope="col"><a th:href="@{/tasks(sort-field='description', sort-dir=${reverseSortDir})}">Описание</a></th>
-                <th scope="col"><a th:href="@{/tasks(sort-field='priority', sort-dir=${reverseSortDir})}">Приоритет</a></th>
-                <th scope="col"><a th:href="@{/tasks(sort-field='completed', sort-dir=${reverseSortDir})}">Выполнен</a></th>
+                <th scope="col"><a th:href="@{/tasks(sort-field='id', sort-dir=${reverseSortDir}, query=${query})}">#</a></th>
+                <th scope="col"><a th:href="@{/tasks(sort-field='title', sort-dir=${reverseSortDir}, query=${query})}">Заголовок</a></th>
+                <th scope="col"><a th:href="@{/tasks(sort-field='description', sort-dir=${reverseSortDir}, query=${query})}">Описание</a></th>
+                <th scope="col"><a th:href="@{/tasks(sort-field='priority', sort-dir=${reverseSortDir}, query=${query})}">Приоритет</a></th>
+                <th scope="col"><a th:href="@{/tasks(sort-field='completed', sort-dir=${reverseSortDir}, query=${query})}">Выполнен</a></th>
                 <th scope="col">Действия</th>
             </tr>
             </thead>
@@ -81,7 +81,7 @@
                 th:each="i: ${#numbers.sequence(1, totalPages)}"
                 th:classappend="${currentPage == i ? 'active' : ''}">
                 <a class="page-link"
-                   th:href="@{tasks(page-number=${i}, sort-field=${sortField}, sort-dir=${sortDir})}"
+                   th:href="@{tasks(page-number=${i}, sort-field=${sortField}, sort-dir=${sortDir}, query=${query})}"
                 >[[${i}]]</a>
             </li>
 

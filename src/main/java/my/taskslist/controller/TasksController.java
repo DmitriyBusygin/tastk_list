@@ -38,6 +38,8 @@ public class TasksController {
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc")?"desc":"asc");
+        // query fo search
+        model.addAttribute("query", query);
         // tasks
         model.addAttribute("tasks", taskList);
         return "tasks/index";
