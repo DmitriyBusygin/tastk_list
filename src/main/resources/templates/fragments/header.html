@@ -1,6 +1,6 @@
 <header th:fragment="header"
         th:with="pageName=${pageName} ?: 'otherPage'">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">Бусыгин Дмитрий</span>
             <a class="navbar-brand" target="_blank" rel="noopener noreferrer"
@@ -12,7 +12,7 @@
                 <img th:src="@{/images/telegram-logo.png}" alt="hh" width="24" height="24">
             </a>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" th:classappend="${#strings.equals(pageName, 'index') ? 'active' : ''}"
