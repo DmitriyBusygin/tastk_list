@@ -41,11 +41,13 @@
                 <td th:text="${task.getPriority()}"></td>
                 <td>
                     <form th:if="${task.isCompleted() == true}"
-                          th:action="@{/tasks/completed/{id}(id=${task.getId()}, makeStatus=false)}" method="post">
+                          th:action="@{/tasks/completed/{id}(id=${task.getId()}, makeStatus=false,
+                          page-number=${currentPage}, sort-field=${sortField}, sort-dir=${sortDir}, query=${query})}" method="post">
                         <button class="bi bi-check-square" type="submit" value="Отменить выполнение"></button>
                     </form>
                     <form th:if="${task.isCompleted() == false}"
-                          th:action="@{/tasks/completed/{id}(id=${task.getId()}, makeStatus=true)}" method="post">
+                          th:action="@{/tasks/completed/{id}(id=${task.getId()}, makeStatus=true,
+                          page-number=${currentPage}, sort-field=${sortField}, sort-dir=${sortDir}, query=${query})}" method="post">
                         <button class="bi bi-square" type="submit" value="Пометить выполненной"></button>
                     </form>
                 </td>

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -85,8 +86,17 @@ public class TasksController {
 
     @PostMapping("/completed/{id}")
     public String makeCompleted(@PathVariable("id") int id,
-                                @RequestParam(name = "makeStatus") boolean makeStatus) {
+                                @RequestParam(name = "makeStatus") boolean makeStatus,
+                                @RequestParam(name = "page-number", defaultValue = "1") final int pageNo,
+                                @RequestParam(name = "sort-field", defaultValue = "id") final String sortField,
+                                @RequestParam(name = "sort-dir", defaultValue = "asc") final String sortDir,
+                                @RequestParam(name = "query", required = false) final String query,
+                                RedirectAttributes redirectAttributes) {
         tasksService.makeCompleted(id, makeStatus);
+        redirectAttributes.addAttribute("page-number", pageNo);
+        redirectAttributes.addAttribute("sort-field", sortField);
+        redirectAttributes.addAttribute("sort-dir", sortDir);
+        redirectAttributes.addAttribute("query", query);
         return "redirect:/tasks";
     }
 }
